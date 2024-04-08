@@ -15,8 +15,8 @@ $order = [
   "pizzaName" => $pizza["name"],
   "pizzaPrice" => (float)$_POST["price"],
   "pizzaSize" => $_POST["size"],
-  "pizzaExtras" => $_POST["extras"],
-  "specialWishes" => $_POST["extras"],
+  "pizzaExtras" => $_POST["extras"] ?? [],
+  "specialWishes" => $_POST["special_wishes"],
   "userName" => $user["name"],
   "userAddress" => $user["address"]
 ];
@@ -24,4 +24,3 @@ $order = [
 view("order.view.php", [
   "order" => $order
 ]);
-

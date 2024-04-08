@@ -35,7 +35,7 @@
 
       <!-- View All Button -->
       <div class="text-center mt-8">
-        <a href="#" class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600">View All</a>
+        <a href="/menu" class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600">View All</a>
       </div>
     </div>
   </section>

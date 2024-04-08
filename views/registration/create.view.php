@@ -16,6 +16,9 @@
         <div>
           <label for="email-address" class="sr-only">Email</label>
           <input id="email-address" name="email" type="email" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm" placeholder="Email">
+          <?php if (isset($errors["email"])) : ?>
+            <p class="mt-2 text-sm text-red-600"><?= htmlspecialchars($errors["email"]) ?></p>
+          <?php endif; ?>
         </div>
         <div>
           <label for="password" class="sr-only">Passwort</label>
@@ -24,6 +27,9 @@
         <div>
           <label for="password-confirm" class="sr-only">Passwort Bestätigen</label>
           <input id="password-confirm" name="confirmPassword" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 focus:z-10 sm:text-sm" placeholder="Passwort Bestätigen">
+          <?php if (isset($errors["confirmPassword"])) : ?>
+            <p class="mt-2 text-sm text-red-600"><?= htmlspecialchars($errors["confirmPassword"]) ?></p>
+          <?php endif; ?>
         </div>
         <div>
           <label for="address" class="sr-only">Adresse</label>

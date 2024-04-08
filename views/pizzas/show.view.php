@@ -7,7 +7,10 @@
         <!-- Left Column for Text Content and Form -->
         <div class="w-full lg:w-1/2 px-4 mb-6 lg:mb-0">
           <form action="/orders" method="POST">
-            <h2 class="text-3xl font-bold text-gray-800">Lecker <?= $pizza["name"] ?></h2>
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Lecker <?= $pizza["name"] ?></h2>
+            <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["role"] === "admin") : ?>
+              <a href="/pizza/edit?id=<?= $pizza["id"] ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300 ease-in-out">Pizza anpassen</a>
+            <?php endif; ?>
             <p class="text-gray-600 mt-4"><?= $pizza["description"] ?></p>
 
             <input hidden value="<?= $pizza["id"] ?>" name="pizza-id" />
@@ -77,6 +80,10 @@
 </main>
 
 <script>
+  var isLoggedIn = <?= isset($_SESSION["user"]) ? 'true' : 'false'; ?>;
+</script>
+
+<script>
   document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('size').addEventListener('change', function() {
       var price = this.value === '26' ? '8' : '10'; // Example price logic based on size
@@ -91,6 +98,13 @@
       placeholder: true,
       placeholderValue: 'Extras hinzufügen...',
       itemSelectText: '',
+    });
+
+    document.querySelector('form').addEventListener('submit', function(e) {
+      if (!isLoggedIn) {
+        e.preventDefault();
+        alert('Bitte melden Sie sich an, bevor Sie eine Bestellung aufgeben.');
+      }
     });
   });
 </script>
