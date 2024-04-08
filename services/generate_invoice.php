@@ -23,10 +23,11 @@ $html = <<<EOD
 <p><strong>Name:</strong> $userName</p>
 <p><strong>Adresse:</strong> $userAddress</p>
 <p><strong>Bestellte Pizza:</strong> $pizzaName ($pizzaSize)</p>
+<p><strong>Menge:</strong> 1 </p>
 <p><strong>Preis:</strong> $pizzaPrice €</p>
 <p><strong>Sonderwünsche:</strong> $specialWishes</p>
 EOD;
 
 $pdf->writeHTMLCell(0, 0, '', '', $html, 0, 1, 0, true, '', true);
 
-$pdf->Output('invoice.pdf', 'I');
+$pdf->Output('invoice.pdf', 'D');
