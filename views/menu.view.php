@@ -22,7 +22,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <?php foreach ($pizzas as $pizza) : ?>
           <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-            <img class="w-full" src="path-to-pizza-image.jpg" alt="<?= htmlspecialchars($pizza["name"]) ?>">
+            <img class="w-full" src="/uploads/<?= $pizza["image"] ?>" alt="<?= htmlspecialchars($pizza["name"]) ?>">
             <div class="p-4">
               <h3 class="text-lg font-bold"><?= htmlspecialchars($pizza["name"]) ?></h3>
               <p class="text-sm text-gray-600 mt-1"><?= htmlspecialchars($pizza["description"] ?? "") ?></p>
@@ -34,7 +34,7 @@
                     <a href="/pizza/delete?id=<?= htmlspecialchars($pizza["id"]) ?>" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600" onclick="return confirm('Are you sure you want to delete this pizza?');">Löschen</a>
                   </div>
                 <?php else : ?>
-                  <a href="/order?pizzaId=<?= htmlspecialchars($pizza["id"]) ?>" class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600">Bestellen</a>
+                  <a href="/pizza?id=<?= htmlspecialchars($pizza["id"]) ?>" class="bg-orange-500 text-white px-3 py-1 rounded hover:bg-orange-600">Bestellen</a>
                 <?php endif; ?>
               </div>
             </div>

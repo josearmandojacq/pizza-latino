@@ -18,7 +18,9 @@ $order = [
   "pizzaExtras" => $_POST["extras"] ?? [],
   "specialWishes" => $_POST["special_wishes"],
   "userName" => $user["name"],
-  "userAddress" => $user["address"]
+  "userAddress" => $user["address"],
+  "userId" => $user["id"],
+  "pizzaId" => $pizza["id"]
 ];
 
 view("order.view.php", [

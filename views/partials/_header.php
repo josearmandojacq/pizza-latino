@@ -38,8 +38,17 @@
                 uns</a>
             </li>
             <?php if (isset($_SESSION["user"])) : ?>
-              <li>
-                <a href="/logout" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Abmelden</a>
+              <li class="relative">
+                <button id="userMenuButton" class="flex items-center space-x-2 py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M12 12a4 4 0 100-8 4 4 0 000 8zm0 8a8 8 0 01-8-8 8.006 8.006 0 011.106-4.106 7.965 7.965 0 012.022-1.9m10.872 6.006A7.967 7.967 0 0118.994 12 8 8 0 0112 20z"></path>
+                  </svg>
+                  <span>Konto</span>
+                </button>
+                <div id="userMenuDropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                  <a href="/users/edit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kontoverwaltung</a>
+                  <a href="/logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Abmelden</a>
+                </div>
               </li>
             <?php else : ?>
               <li>
@@ -53,3 +62,21 @@
         </div>
       </div>
     </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userMenuDropdown = document.getElementById('userMenuDropdown');
+
+        userMenuButton.addEventListener('click', () => {
+          userMenuDropdown.classList.toggle('hidden');
+        });
+
+        // Optional: Clicking outside the dropdown closes it
+        window.addEventListener('click', (e) => {
+          if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+            userMenuDropdown.classList.add('hidden');
+          }
+        });
+      });
+    </script>
