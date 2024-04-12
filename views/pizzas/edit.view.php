@@ -32,7 +32,14 @@
           <div>
             <label for="pizza-image" class="block text-sm font-medium text-gray-700">Pizza Image</label>
             <input id="pizza-image" name="pizzaImage" type="file" class="mt-1 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-orange-500 file:text-white hover:file:bg-orange-600">
-            <span class="block text-sm text-gray-600">Current image: <?= $image['path'] ?? "" ?></span>
+            <span class="block text-sm text-gray-600">Current image:</span>
+            <?php if (isset($pizza["image"]) && $pizza["image"] != "") : ?>
+              <!-- Display the current image -->
+              <img src="/uploads/<?= $pizza["image"] ?>" alt="Current Pizza Image" class="mt-2 max-h-32 w-auto">
+            <?php else : ?>
+              <!-- Placeholder if no image is available -->
+              <span class="block text-sm text-gray-600">No image available</span>
+            <?php endif; ?>
           </div>
         </div>
 

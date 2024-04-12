@@ -7,7 +7,7 @@
         <!-- Left Column for Text Content and Form -->
         <div class="w-full lg:w-1/2 px-4 mb-6 lg:mb-0">
           <form action="/orders" method="POST">
-            <h2 class="text-3xl font-bold mb-4 text-gray-800">Lecker <?= $pizza["name"] ?></h2>
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Leckere <?= $pizza["name"] ?></h2>
             <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["role"] === "admin") : ?>
               <a href="/pizza/edit?id=<?= $pizza["id"] ?>" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300 ease-in-out">Pizza anpassen</a>
             <?php endif; ?>
@@ -50,9 +50,9 @@
             <!-- Price Display and Hidden Input -->
             <div class="mt-6">
               <span class="text-sm font-bold text-gray-700">Preis:</span>
-              <span id="price-display" class="text-lg font-bold text-gray-900">8 €</span>
+              <span id="price-display" class="text-lg font-bold text-gray-900"><?= htmlspecialchars($pizza["price"]) ?> €</span>
 
-              <input type="hidden" id="price" name="price" value="8">
+              <input type="hidden" id="price" name="price" value="<?= htmlspecialchars($pizza["price"]) ?>">
             </div>
 
             <!-- Buttons Container -->
@@ -72,7 +72,7 @@
 
         <!-- Pizza Image -->
         <div class="w-full lg:w-1/2 px-4 flex justify-center lg:justify-end">
-          <img class="rounded-lg shadow-lg" src="path-to-pizza-image.jpg" alt="Pepperoni Pizza" style="max-height: 500px;">
+          <img class="w-full" src="/uploads/<?= $pizza["image"] ?>" alt="<?= htmlspecialchars($pizza["name"]) ?>">
         </div>
       </div>
     </div>
@@ -80,16 +80,33 @@
 </main>
 
 <script>
+  var basePrice = <?= json_encode($pizza["price"]) ?>;
   var isLoggedIn = <?= isset($_SESSION["user"]) ? 'true' : 'false'; ?>;
 </script>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('size').addEventListener('change', function() {
-      var price = this.value === '26' ? '8' : '10'; // Example price logic based on size
-      document.getElementById('price-display').textContent = price + ' €';
-      document.getElementById('price').value = price; // Update hidden input value
+    const sizeSelect = document.getElementById('size');
+    const priceDisplay = document.getElementById('price-display');
+    const priceInput = document.getElementById('price');
+
+    // Convert basePrice to a number if it's a string
+    let currentBasePrice = parseFloat(basePrice);
+
+    sizeSelect.addEventListener('change', function() {
+      // Reset to base price when 26 cm is selected
+      if (this.value === '26') {
+        updatePrice(currentBasePrice);
+      } else if (this.value === '32') {
+        updatePrice(currentBasePrice + 2.00);
+      }
     });
+
+    function updatePrice(newPrice) {
+      // Update the displayed and hidden input values for the price
+      priceDisplay.textContent = newPrice.toFixed(2) + ' €';
+      priceInput.value = newPrice;
+    }
 
     var extrasSelect = document.getElementById('extras');
     var choices = new Choices(extrasSelect, {

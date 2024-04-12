@@ -13,7 +13,7 @@ $pizza = $db->query("select * from pizzas where id = :id", [
 
 $order = [
   "pizzaName" => $pizza["name"],
-  "pizzaPrice" => (float)$_POST["price"],
+  "pizzaPrice" => $_POST["price"] . ".00",
   "pizzaSize" => $_POST["size"],
   "pizzaExtras" => $_POST["extras"] ?? [],
   "specialWishes" => $_POST["special_wishes"],

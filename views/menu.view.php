@@ -3,8 +3,8 @@
 <main class="pt-24 w-full bg-gray-100">
   <!-- Page Title -->
   <div class="text-center py-10">
-    <h1 class="text-5xl font-bold text-gray-800">All Our Pizzas</h1>
-    <p class="mt-4 text-base text-gray-600">Explore our wide selection of delicious pizzas.</p>
+    <h1 class="text-5xl font-bold text-gray-800">Alle unsere Pizzen</h1>
+    <p class="mt-4 text-base text-gray-600">Entdecken Sie unsere große Auswahl an köstlichen Pizzen</p>
   </div>
 
   <?php if (isset($_SESSION["user"]) && $_SESSION["user"]["role"] === "admin") : ?>

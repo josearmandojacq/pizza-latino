@@ -2,7 +2,7 @@
 
 <div class="bg-white dark:bg-orange-500">
   <!-- Replace 'pizzeria-image.jpg' with the actual image path -->
-  <img src="pizzeria-image.jpg" alt="Pizzeria" class="w-full object-cover h-64 sm:h-72 md:h-96 lg:h-112 xl:h-128">
+  <img src="/uploads/pizzeria.jpg" alt="Pizzeria" style="width: 100%; object-fit: cover; height: 800px;">
 </div>
 
 <section class="py-12 bg-gray-50">
